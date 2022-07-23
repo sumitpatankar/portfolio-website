@@ -1,0 +1,9 @@
+version: "3"
+services:
+  nginx-test:
+    build: ./nginx.Dockerfile
+    target: nginx
+    ports:
+      - 8090:80
+    volumes:
+      - ./nginx:/usr/share/nginx/html

@@ -3,7 +3,7 @@ services:
   apache-test:
     stdin_open: true
     tty: true
-    user: $APACHE_ADMIN
+
     environment:
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}
@@ -14,9 +14,12 @@ services:
     build:
       context: .
       dockerfile: apache.Dockerfile
-
+    command: bash -c "
+      useradd -m /home/${APACHE_ADMIN} -s /bin/bash ${APACHE_ADMIN} \
+      cp ../index-apache.html:/var/www/html/index.html"
     ports:
       - "8080:8080"
+    user: $APACHE_ADMIN
     hostname: ${APACHE_SERVER_HOSTNAME}
     container_name: ${APACHE_SERVER_HOSTNAME}
     mac_address: ${APACHE_MAC_ADDRESS}
@@ -35,8 +38,8 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - ../index.html:/var/www/html/index.html
-      - ../../portfolio-website/apache:/etc/httpd/sites-available/portfolio-website
+      - ../index-apache.html:/var/www/html/index.html
+      - ../../portfolio-website-proj/apache:/etc/httpd/sites-available/portfolio-website-proj
       - /sys/fs/cgroup:/sys/fs/cgroup
 
 networks:

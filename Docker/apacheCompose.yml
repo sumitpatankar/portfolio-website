@@ -3,6 +3,7 @@ services:
   apache-test:
     stdin_open: true
     tty: true
+    user: $APACHE_ADMIN
     environment:
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}

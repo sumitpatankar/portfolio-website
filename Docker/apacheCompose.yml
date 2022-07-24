@@ -35,7 +35,7 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - ../index.html:/usr/local/apache2/htdocs
+      - ../index.html:/var/www/html/index.html
       - ../../portfolio-website:/home/apache
       - /sys/fs/cgroup:/sys/fs/cgroup
 

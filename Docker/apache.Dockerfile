@@ -24,7 +24,7 @@ RUN yum -y install systemd net-tools vim httpd; yum clean all; \
 #RUN adduser -u $APACHE_ADMIN_UID -ms /bin/bash $APACHE_ADMIN
 VOLUME [ "/sys/fs/cgroup" ]
 RUN mkdir /etc/httpd/sites-enabled; mkdir /etc/httpd/sites-available
-#USER $APACHE_ADMIN
+USER $APACHE_ADMIN
 #WORKDIR $APACHE_HOME
 EXPOSE  8080
 CMD [ "/usr/sbin/init", "/usr/sbin/httpd -D FOREGROUND" ]

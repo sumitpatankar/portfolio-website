@@ -21,7 +21,7 @@ RUN yum -y install systemd net-tools vim httpd; yum clean all; \
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-RUN groupadd -g $APACHE_ADMIN_GID $APACHE_ADMIN_GROUP; adduser -u $APACHE_ADMIN_UID -g $APACHE_ADMIN_GID -ms /bin/bash $APACHE_ADMIN
+RUN adduser -u $APACHE_ADMIN_UID -ms /bin/bash $APACHE_ADMIN
 VOLUME [ "/sys/fs/cgroup" ]
 
 USER $APACHE_ADMIN

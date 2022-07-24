@@ -10,7 +10,6 @@ services:
     #cpuset: 0,1
 
     build: ./apache.Dockerfile
-    target: apache
     ports:
       - "8080:80"
     hostname: ${APACHE_SERVER_HOSTNAME}

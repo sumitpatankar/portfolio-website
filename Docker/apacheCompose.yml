@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   apache-test:
-    user: apache
+    user: admin
     environment:
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}

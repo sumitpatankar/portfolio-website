@@ -22,6 +22,6 @@ RUN yum -y install systemd vim; yum clean all; \
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 VOLUME [ "/sys/fs/cgroup" ]
-USER apache
+USER admin
 EXPOSE  8080
 CMD [ "/usr/sbin/init", "/usr/sbin/httpd -D FOREGROUND" ]

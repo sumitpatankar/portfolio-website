@@ -14,6 +14,7 @@ services:
     build:
       context: .
       dockerfile: apache.Dockerfile
+    restart: unless-stopped
     command: bash -c "
       useradd -m /home/${APACHE_ADMIN} -s /bin/bash ${APACHE_ADMIN} \
       cp ../index-apache.html:/var/www/html/index.html"

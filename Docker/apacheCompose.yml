@@ -22,12 +22,12 @@ services:
     hostname: ${APACHE_SERVER_HOSTNAME}
     container_name: ${APACHE_SERVER_HOSTNAME}
     mac_address: ${APACHE_MAC_ADDRESS}
-    networks:
-      frontend:
-        ipv4_address: ${IP_APACHE}
-        aliases:
-          - ${APACHE_SERVER_HOSTNAME}
-      # external: true     --> Uncomment if network exists
+    # networks:
+    #   frontend:
+    #     ipv4_address: ${IP_APACHE}
+    #     aliases:
+    #       - ${APACHE_SERVER_HOSTNAME}
+    # external: true     --> Uncomment if network exists
 
     ulimits:
       memlock:
@@ -41,12 +41,11 @@ services:
       #      - ../apache/httpd:/etc/httpd
       - ../../portfolio-website-proj/apache:/etc/httpd/sites-available/portfolio-website-proj
       - /sys/fs/cgroup:/sys/fs/cgroup
-
-networks:
-  frontend:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${SUBNET}
-          gateway: ${GATEWAY}
+# networks:
+#   frontend:
+#     driver: bridge
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: ${SUBNET}
+#           gateway: ${GATEWAY}

@@ -1,14 +1,46 @@
 version: "3.6"
 services:
   apache-test:
+    user: apache
+    environment:
+      - LANG=${LANG}
+      - LC_ALL=${LC_ALL}
+    #cpus: 0.5
+    #cpu_shares: 5
+    #cpuset: 0,1
+
     build: ./apache.Dockerfile
     target: apache
     ports:
       - "8080:80"
+    hostname: ${APACHE_SERVER_HOSTNAME}
+    container_name: ${APACHE_SERVER_HOSTNAME}
+    mac_address: ${APACHE_MAC_ADDRESS}
+    networks:
+      docker-frontend:
+        ipv4_address: ${IP_APACHE}
+        aliases:
+          - ${APACHE_SERVER_HOSTNAME}
+      # external: true     --> Uncomment if network exists
+    stdin_open: true
+    tty: true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    working_dir: /home/evolphin
     volumes:
       - ../index.html:/usr/local/apache2/htdocs
-  networks:
-    docker-frontend:
-      name: custom_frontend
+      - ../../portfolio-website:/home/apache
+      - /sys/fs/cgroup:/sys/fs/cgroup
+
+networks:
+  docker-frontend:
+    ipam:
       driver: bridge
-    # external: true     --> Uncomment if network exists
+      config:
+        - subnet: ${SUBNET}
+          gateway: ${GATEWAY}

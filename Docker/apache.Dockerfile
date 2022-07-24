@@ -1,4 +1,4 @@
-FROM centos/httpd as apache-web
+FROM centos/httpd-24-centos7:latest as apache-web
 
 USER root
 
@@ -23,9 +23,12 @@ RUN yum -y install systemd net-tools vim httpd; yum clean all;
 
 #RUN adduser -u $APACHE_ADMIN_UID -ms /bin/bash $APACHE_ADMIN
 VOLUME [ "/sys/fs/cgroup" ]
+
 RUN mkdir /etc/httpd/sites-enabled; mkdir /etc/httpd/sites-available
+
 USER $APACHE_ADMIN
 #WORKDIR $APACHE_HOME
+
 EXPOSE  8080
 # "/usr/sbin/init",
-CMD [ "/usr/sbin/httpd -D FOREGROUND" ]
+CMD [ "/usr/bin/run-httpd" ]

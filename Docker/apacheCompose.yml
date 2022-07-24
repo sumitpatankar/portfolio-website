@@ -23,7 +23,7 @@ services:
     container_name: ${APACHE_SERVER_HOSTNAME}
     mac_address: ${APACHE_MAC_ADDRESS}
     networks:
-      docker-frontend:
+      frontend:
         ipv4_address: ${IP_APACHE}
         aliases:
           - ${APACHE_SERVER_HOSTNAME}
@@ -43,7 +43,7 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup
 
 networks:
-  docker-frontend:
+  frontend:
     driver: bridge
     ipam:
       driver: default

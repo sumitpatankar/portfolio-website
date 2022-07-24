@@ -11,7 +11,7 @@ LABEL name="website"
 # CMD ["/run-httpd.sh"]
 ENV container docker
 
-RUN yum -y install systemd vim; yum clean all; \
+RUN useradd --uid $APACHE_ADMIN_UID --gid $APACHE_ADMIN_GID -m $APACHE_ADMIN; yum -y install systemd vim; yum clean all; \
     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
     rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /etc/systemd/system/*.wants/*;\
@@ -22,6 +22,8 @@ RUN yum -y install systemd vim; yum clean all; \
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 VOLUME [ "/sys/fs/cgroup" ]
-USER admin
+
+USER $APACHE_ADMIN
+WORKDIR $APACHE_HOME
 EXPOSE  8080
 CMD [ "/usr/sbin/init", "/usr/sbin/httpd -D FOREGROUND" ]

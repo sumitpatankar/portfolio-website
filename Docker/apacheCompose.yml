@@ -1,7 +1,10 @@
 version: "3.4"
 services:
   apache-test:
-    user: admin
+    user: $APACHE_ADMIN
+    working_dir: $APACHE_HOME
+    stdin_open: true
+    tty: true
     environment:
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}
@@ -24,8 +27,7 @@ services:
         aliases:
           - ${APACHE_SERVER_HOSTNAME}
       # external: true     --> Uncomment if network exists
-    stdin_open: true
-    tty: true
+
     ulimits:
       memlock:
         soft: -1
@@ -33,7 +35,6 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    working_dir: /home/evolphin
     volumes:
       - ../index.html:/usr/local/apache2/htdocs
       - ../../portfolio-website:/home/apache

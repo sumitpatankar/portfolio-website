@@ -3,24 +3,22 @@ services:
   apache-test:
     stdin_open: true
     tty: true
-
     environment:
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}
     #cpus: 0.5
     #cpu_shares: 5
     #cpuset: 0,1
-
     build:
       context: .
       dockerfile: apache.Dockerfile
     restart: unless-stopped
-    command: bash -c "
-      useradd -m /home/${APACHE_ADMIN} -s /bin/bash ${APACHE_ADMIN} \
-      cp ../index-apache.html:/var/www/html/index.html"
+    # command: bash -c "
+    #   useradd -m /home/${APACHE_ADMIN} -s /bin/bash ${APACHE_ADMIN} \
+    #   cp ../index-apache.html:/var/www/html/index.html"
     ports:
       - "8080:8080"
-    user: $APACHE_ADMIN
+    user: apache
     hostname: ${APACHE_SERVER_HOSTNAME}
     container_name: ${APACHE_SERVER_HOSTNAME}
     mac_address: ${APACHE_MAC_ADDRESS}

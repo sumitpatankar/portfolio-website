@@ -11,7 +11,7 @@ LABEL name="website"
 # CMD ["/run-httpd.sh"]
 ENV container docker
 
-RUN adduser --uid $APACHE_ADMIN_UID --gid $APACHE_ADMIN_GID -ms /bin/bash $APACHE_ADMIN; yum -y install systemd net-tools vim httpd; yum clean all; \
+RUN yum -y install systemd net-tools vim httpd; yum clean all; \
     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
     rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /etc/systemd/system/*.wants/*;\
@@ -21,6 +21,7 @@ RUN adduser --uid $APACHE_ADMIN_UID --gid $APACHE_ADMIN_GID -ms /bin/bash $APACH
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
+RUN adduser -u $APACHE_ADMIN_UID -g $APACHE_ADMIN_GID -ms /bin/bash $APACHE_ADMIN
 VOLUME [ "/sys/fs/cgroup" ]
 
 USER $APACHE_ADMIN

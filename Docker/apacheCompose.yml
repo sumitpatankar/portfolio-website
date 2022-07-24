@@ -38,7 +38,7 @@ services:
         hard: 65536
     volumes:
       - ../index-apache.html:/var/www/html/index.html
-      #      - ../apache/httpd:/etc/httpd
+      - ../apache/httpd:/etc/httpd
       - ../../portfolio-website-proj/apache:/etc/httpd/sites-available/portfolio-website-proj
       - /sys/fs/cgroup:/sys/fs/cgroup
 # networks:

@@ -16,7 +16,7 @@ services:
       dockerfile: apache.Dockerfile
 
     ports:
-      - "8080:80"
+      - "8080:8080"
     hostname: ${APACHE_SERVER_HOSTNAME}
     container_name: ${APACHE_SERVER_HOSTNAME}
     mac_address: ${APACHE_MAC_ADDRESS}

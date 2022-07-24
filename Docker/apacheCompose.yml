@@ -43,5 +43,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: ${SUBNET}
-          gateway: ${GATEWAY}
+        - subnet: "${SUBNET}"
+          gateway: "${GATEWAY}"

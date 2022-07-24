@@ -21,10 +21,10 @@ RUN yum -y install systemd net-tools vim httpd; yum clean all; \
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-RUN adduser -u $APACHE_ADMIN_UID -ms /bin/bash $APACHE_ADMIN
+#RUN adduser -u $APACHE_ADMIN_UID -ms /bin/bash $APACHE_ADMIN
 VOLUME [ "/sys/fs/cgroup" ]
 
-USER $APACHE_ADMIN
-WORKDIR $APACHE_HOME
+#USER $APACHE_ADMIN
+#WORKDIR $APACHE_HOME
 EXPOSE  8080
 CMD [ "/usr/sbin/init", "/usr/sbin/httpd -D FOREGROUND" ]

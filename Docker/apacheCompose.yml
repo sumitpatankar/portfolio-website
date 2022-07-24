@@ -1,8 +1,6 @@
 version: "3.4"
 services:
   apache-test:
-    user: $APACHE_ADMIN
-    working_dir: $APACHE_HOME
     stdin_open: true
     tty: true
     environment:

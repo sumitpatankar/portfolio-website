@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.4"
 services:
   apache-test:
     user: apache
@@ -39,8 +39,9 @@ services:
 
 networks:
   docker-frontend:
+    driver: bridge
     ipam:
-      driver: bridge
+      driver: default
       config:
         - subnet: ${SUBNET}
           gateway: ${GATEWAY}

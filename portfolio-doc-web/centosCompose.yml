@@ -11,8 +11,8 @@ services:
       dockerfile: cent.Dockerfile
     restart: unless-stopped
     command: bash -c "
-      sudo mkdir /etc/httpd/sites-available /etc/httpd/sites-enabled \
-      sudo ln -s /etc/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-enabled/myapp.apache.com.conf"
+      mkdir /etc/httpd/sites-available /etc/httpd/sites-enabled \
+      ln -s /etc/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-enabled/myapp.apache.com.conf"
 
     ports:
       - "8080:80"

@@ -4,7 +4,7 @@ USER root
 
 LABEL name="apache-website"
 
-RUN mkdir /etc/httpd/sites-enabled; mkdir /etc/httpd/sites-available
+RUN mkdir /etc/httpd/sites-enabled && mkdir /etc/httpd/sites-available
 
 COPY /portfolio-website-proj/conf-apache/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-available/myapp.apache.com.conf
 

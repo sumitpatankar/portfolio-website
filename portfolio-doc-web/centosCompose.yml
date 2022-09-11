@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     ports:
       - "8080:80"
-    user: apache
+    #user: apache
     ulimits:
       memlock:
         soft: -1

@@ -10,6 +10,10 @@ services:
       context: .
       dockerfile: cent.Dockerfile
     restart: unless-stopped
+    command: bash -c "
+      sudo mkdir /etc/httpd/sites-available /etc/httpd/sites-enabled \
+      sudo ln -s /etc/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-enabled/myapp.apache.com.conf"
+
     ports:
       - "8080:80"
     #user: apache
@@ -20,3 +24,7 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    volumes:
+      - ./../index-apache.html:/var/www/html/index.html
+      - /portfolio-website-proj/conf-apache/myapp.apache.com:/var/www/myapp.apache.com
+      - /portfolio-website-proj/conf-apache/httpd/sites-available/myapp.apache.com.conf:/etc/httpd/sites-available/myapp.apache.com.conf

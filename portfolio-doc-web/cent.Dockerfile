@@ -4,8 +4,8 @@ USER root
 
 LABEL name="apache-website"
 
-RUN sudo mkdir /etc/httpd/sites-enabled && sudo mkdir /etc/httpd/sites-available
-
+RUN mkdir /etc/httpd/sites-enabled
+RUN sudo mkdir /etc/httpd/sites-available
 COPY /portfolio-website-proj/conf-apache/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-available/myapp.apache.com.conf
 
 RUN sudo ln -s /etc/httpd/sites-available/myapp.apache.com.conf /etc/httpd/sites-enabled/myapp.apache.com.conf
